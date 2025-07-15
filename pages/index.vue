@@ -25,39 +25,33 @@
               <v-card-title class="text-h5 pink"><v-icon>mdi-information</v-icon> <v-spacer></v-spacer>
                 Customer Details <v-spacer></v-spacer>
                 <v-btn color="pink"> <v-icon>mdi-close</v-icon></v-btn>
+                
               </v-card-title>
-              <v-spacer></v-spacer>
               
-              <v-row>
-                <v-col cols="12" md="4"><v-img
-  
-  max-height="250"
-  max-width="250"
-  src="customerPhoto"
-></v-img></v-col>
-                
-                <v-col cols="12" md="8">
-                   <v-list-item two-line>
-      <v-list-item-content>
-        <v-list-item-title>Name</v-list-item-title>
-        <v-list-item-subtitle>{{ name }}</v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
+            
+              <v-row >
+                <v-col cols="12" md="4"><v-img max-height="200" max-width="200" :src="customerPhoto"></v-img></v-col>
+                <v-col cols="12" md="6">
+                  <v-list-item two-line>
+                    <v-list-item-content>
+                      <v-list-item-title>Name</v-list-item-title>
+                      <v-list-item-title>{{ customerName }}</v-list-item-title>
+                      <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer><v-spacer></v-spacer>
+                      <v-list-item-title>Email</v-list-item-title>
+                      <v-list-item-title>{{ customerEmail }}</v-list-item-title>
+                      <v-list-item-title>Phone #</v-list-item-title>
+                      <v-list-item-title>{{ customerPhone }}</v-list-item-title>
+                      <v-list-item-title>Age</v-list-item-title>
+                      <v-list-item-title>{{ customerAge }}</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
                 </v-col>
-                
-              </v-row>
-          
 
-              
-              <v-card-text>
-                Email
-              </v-card-text>
-              <v-card-text>
-                Phone #
-              </v-card-text>
-              <v-card-text>
-                Age
-              </v-card-text>
+              </v-row>
+
+
+
+
 
               <v-divider></v-divider>
 
@@ -72,8 +66,9 @@
         </div>
       </template>
     </v-col>
-  </v-row>
+  </v-row> 
 </template>
+
 
 <script>
 export default {
@@ -122,6 +117,7 @@ export default {
       this.customerEmail = item.email
       this.customerPhone = item.phone
       this.customerAge = item.age
+      this.customerPhoto = item.profilePicture
       this.customerdialog = true
 
 

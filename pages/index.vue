@@ -1,6 +1,14 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12">
+      <v-card>
+        <v-toolbar color="transparent" elevation="0">
+          <v-toolbar-title>List of Customers</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn color="pink" @click="createdialog = true"><v-icon left>mdi-plus</v-icon> Create</v-btn>
+        </v-toolbar>
+        <v-divider></v-divider>
+      </v-card>
 
       <v-data-table :headers="headers" :items="customers" :items-per-page="10" class="elevation-1" :loading="loading"
         loading-text="Loading... Pleae wait">
@@ -24,23 +32,28 @@
             <v-card>
               <v-card-title class="text-h5 pink"><v-icon>mdi-information</v-icon> <v-spacer></v-spacer>
                 Customer Details <v-spacer></v-spacer>
-                <v-btn color="pink"> <v-icon>mdi-close</v-icon></v-btn>
-                
+                <v-btn  icon @click="customerdialog = false" > <v-icon>mdi-close</v-icon></v-btn>
+
               </v-card-title>
-              
-            
-              <v-row >
+
+
+              <v-row>
                 <v-col cols="12" md="4"><v-img max-height="200" max-width="200" :src="customerPhoto"></v-img></v-col>
                 <v-col cols="12" md="6">
                   <v-list-item two-line>
                     <v-list-item-content>
                       <v-list-item-title>Name</v-list-item-title>
                       <v-list-item-title>{{ customerName }}</v-list-item-title>
-                      <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer><v-spacer></v-spacer>
+                      <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer>
+                      <v-spacer></v-spacer><v-spacer></v-spacer>
                       <v-list-item-title>Email</v-list-item-title>
                       <v-list-item-title>{{ customerEmail }}</v-list-item-title>
+                      <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer>
+                      <v-spacer></v-spacer><v-spacer></v-spacer>
                       <v-list-item-title>Phone #</v-list-item-title>
                       <v-list-item-title>{{ customerPhone }}</v-list-item-title>
+                      <v-spacer></v-spacer> <v-spacer></v-spacer> <v-spacer></v-spacer>
+                      <v-spacer></v-spacer><v-spacer></v-spacer>
                       <v-list-item-title>Age</v-list-item-title>
                       <v-list-item-title>{{ customerAge }}</v-list-item-title>
                     </v-list-item-content>
@@ -63,10 +76,33 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
+          <v-dialog v-model="createdialog" width="500" >
+            <v-card>
+              <v-toolbar class="mb-10">
+                <v-toolbar-title>
+                  <v-btn color="transparent" @click="createdialog = true"><v-icon left>mdi-account</v-icon>
+                    Create </v-btn> 
+                </v-toolbar-title> <v-spacer></v-spacer>
+                <v-icon @click="createdialog = false"> mdi-close</v-icon>
+              </v-toolbar>
+              <v-card-text>
+                <v-form>
+                  <v-text-field outlined label="Name"></v-text-field>
+                  <v-text-field outlined label="Email Address"></v-text-field>
+                  <v-text-field outlined label="Contact Number"></v-text-field>
+                  <v-textarea label="Address" outlined rows="2"></v-textarea>
+                  <v-text-field label="Age" outlined type="number"></v-text-field>
+                  <v-checkbox label="is VIP"></v-checkbox>
+                  <v-btn block @click="createdialog= false" color="primary" class="mb-5">Submit</v-btn>
+                </v-form>
+                <v-divider></v-divider>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
         </div>
       </template>
     </v-col>
-  </v-row> 
+  </v-row>
 </template>
 
 
@@ -89,6 +125,8 @@ export default {
       customers: [],
       loading: true,
       customerdialog: false,
+      createdialog: false,
+      submit:false,
       customerName: "",
       customerEmail: "",
       customerPhone: "",
